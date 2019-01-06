@@ -18,58 +18,26 @@ public class App {
     private static EntityManager em;
 
     public static void main(String[] args) {
-        createDB();
-        createEM();
-        createData();
-        getData();
-    }
+        Datenbank db = new Datenbank("ormvererbung", "root", "mysql");
+        db.datenbankLoeschen();
+        db.datenbankErstellen();
+        db.createEM();
 
-    private static void createEM() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ORMVererbungPU");
-        em = emf.createEntityManager();
-    }
-
-    private static void getData() {
-        em.getTransaction().begin();
-
-        Query query = em.createQuery("SELECT Konto FROM Konto konto"); // JPQL
-        List<Konto> list = query.getResultList();
-        for (Konto konto : list) {
-            if(konto.getClass().equals(Sparkonto.class))
-            System.out.println(konto.getKontostand());
-         }
-
-        em.getTransaction().commit();
-    }
-
-    private static void createData() {
-                Sparkonto sparkonto1 = new Sparkonto();
+        Sparkonto sparkonto1 = new Sparkonto();
         Sparkonto sparkonto2 = new Sparkonto();
         Girokonto girokonto1 = new Girokonto();
         Girokonto girokonto2 = new Girokonto();
 
-        em.getTransaction().begin();
+        db.speichern(sparkonto1);
+        db.speichern(sparkonto2);
+        db.speichern(girokonto1);
+        db.speichern(girokonto2);
 
+        sparkonto1.setZinssatz(0.3);
 
-        em.persist(sparkonto1);
-        em.persist(sparkonto2);
-        em.persist(girokonto1);
-        em.persist(girokonto2);
-
-        em.getTransaction().commit();
+        List<Konto> list = db.getDaten();
+        Sparkonto s = (Sparkonto)list.get(0);
+        System.out.println(s.getZinssatz());
     }
 
-    private static void createDB() {
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/", DB_USER, DB_PASSWORD);
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate("DROP DATABASE IF EXISTS " + DB_NAME);
-            stmt.executeUpdate("CREATE DATABASE " + DB_NAME);
-
-            stmt.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
