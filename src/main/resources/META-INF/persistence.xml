@@ -7,6 +7,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>de.gbsschulen.ormvererbung.Konto</class>
         <class>de.gbsschulen.ormvererbung.Sparkonto</class>
+        <class>de.gbsschulen.ormvererbung.Girokonto</class>
         <properties>
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/ormvererbung"/>
