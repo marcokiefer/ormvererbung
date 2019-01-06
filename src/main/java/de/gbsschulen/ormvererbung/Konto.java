@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Konto {
+public abstract class Konto {
     @Id
     private String id;
     private double kontostand;

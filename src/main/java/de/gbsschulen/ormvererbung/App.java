@@ -43,17 +43,14 @@ public class App {
     }
 
     private static void createData() {
-        Konto konto1 = new Konto();
-        Konto konto2 = new Konto();
-        Sparkonto sparkonto1 = new Sparkonto();
+                Sparkonto sparkonto1 = new Sparkonto();
         Sparkonto sparkonto2 = new Sparkonto();
         Girokonto girokonto1 = new Girokonto();
         Girokonto girokonto2 = new Girokonto();
 
         em.getTransaction().begin();
 
-        em.persist(konto1);
-        em.persist(konto2);
+
         em.persist(sparkonto1);
         em.persist(sparkonto2);
         em.persist(girokonto1);
