@@ -1,7 +1,6 @@
 package de.gbsschulen.ormvererbung;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -17,5 +16,13 @@ public class Konto {
 
     public Konto() {
         this(UUID.randomUUID().toString(), 0.0);
+    }
+
+    public double getKontostand() {
+        return kontostand;
+    }
+
+    public void setKontostand(double kontostand) {
+        this.kontostand = kontostand;
     }
 }
