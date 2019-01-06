@@ -34,10 +34,6 @@ public class App {
         db.speichern(girokonto2);
 
         sparkonto1.setZinssatz(0.3);
-
-        List<Konto> list = db.getDaten();
-        Sparkonto s = (Sparkonto)list.get(0);
-        System.out.println(s.getZinssatz());
     }
 
 }

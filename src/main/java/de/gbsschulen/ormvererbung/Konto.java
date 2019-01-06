@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // default: 1 Tabelle
+//@Inheritance(strategy = InheritanceType.JOINED) // 3 Tabellen
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // 2 Tabellen
 public abstract class Konto {
     @Id
     private String id;
