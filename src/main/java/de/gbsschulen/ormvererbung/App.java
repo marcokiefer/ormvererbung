@@ -35,6 +35,7 @@ public class App {
         Query query = em.createQuery("SELECT Konto FROM Konto konto"); // JPQL
         List<Konto> list = query.getResultList();
         for (Konto konto : list) {
+            if(konto.getClass().equals(Sparkonto.class))
             System.out.println(konto.getKontostand());
          }
 
