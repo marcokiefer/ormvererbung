@@ -25,7 +25,7 @@ public class Datenbank {
 
     public void datenbankLoeschen() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/", user, password);
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/?serverTimezone=UTC", user, password);
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("DROP DATABASE IF EXISTS " + datenbank);
             stmt.close();
@@ -37,7 +37,7 @@ public class Datenbank {
 
     public void datenbankErstellen() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/", user, password);
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/?serverTimezone=UTC", user, password);
             Statement stmt = connection.createStatement();
             stmt.executeUpdate("CREATE DATABASE " + datenbank);
             stmt.close();
